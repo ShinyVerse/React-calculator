@@ -11,10 +11,10 @@ class App extends Component {
       }
     }
 
-    // onPlus = () => {
-    //   let newCount = this.state.count + 1;
-    //   this.setState({count: newCount});
-    // }
+    onPlus = () => {
+      let newCount = this.state.count + 1;
+      this.setState({count: newCount});
+    }
 
   render() {
     return (
@@ -22,7 +22,7 @@ class App extends Component {
         <header className="App-header">
           <div className="counter">{this.state.count}
           </div>
-          <Button plusEvent={() => { this.setState({ count: count + 1 }); } }/>
+          <Button plusEvent={() => { onPlus } }/>
         </header>
       </div>
     );

@@ -20,13 +20,23 @@ it('plusOne callback fires when button is clicked', () => {
   myButton.find(".myPlusButton").simulate('click');
   sinon.assert.called(plusCallback);
 })
+describe('Functionality', () => {
+    var count = 0;
+    var sumToDo = (act) => {
+      count =act;
+    }
+    it('adds one to state when plused', () => {
 
-it('adds one to state when clicked', () => {
-  var count = 0;
-  var plus = () => {
-    count =+ 1;
-  }
-  const myButton = shallow(<Button plusEvent={ plus }/>);
-  myButton.find('.myPlusButton').simulate('click');
-  expect(count).toBe(1);
+      const myButton = shallow(<Button plusEvent={  sumToDo(+1) }/>);
+      myButton.find('.myPlusButton').simulate('click');
+      expect(count).toBe(1);
+    })
+
+    it('adds one to state when minused', () => {
+      const myButton = shallow(<Button plusEvent={ sumToDo(-1) }/>);
+      myButton.find('.myPlusButton').simulate('click');
+      expect(count).toBe(-1);
+    })
+
+
 })
