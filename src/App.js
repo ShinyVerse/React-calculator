@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Button from './components/Button/Button';
 import './App.css';
 
 class App extends Component {
@@ -10,18 +11,18 @@ class App extends Component {
       }
     }
 
-    onPlus = () => {
-      let newCount = this.state.count + 1;
-      this.setState({count: newCount});
-    }
+    // onPlus = () => {
+    //   let newCount = this.state.count + 1;
+    //   this.setState({count: newCount});
+    // }
 
   render() {
     return (
       <div className="App">
         <header className="App-header">
-          <div> {this.state.count}
+          <div className="counter">{this.state.count}
           </div>
-          <button onClick={this.onPlus} >+</button>
+          <Button plusEvent={() => { this.setState({ count: count + 1 }); } }/>
         </header>
       </div>
     );
