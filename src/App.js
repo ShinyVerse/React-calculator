@@ -9,10 +9,16 @@ class App extends Component {
       this.state = {
         count: 0
       }
+      this.onPlus = this.onPlus.bind(this);
     }
 
     onPlus = () => {
       let newCount = this.state.count + 1;
+      this.setState({count: newCount});
+    }
+
+    onMinus = () => {
+      let newCount = this.state.count - 1;
       this.setState({count: newCount});
     }
 
@@ -22,7 +28,8 @@ class App extends Component {
         <header className="App-header">
           <div className="counter">{this.state.count}
           </div>
-          <Button plusEvent={() => { onPlus } }/>
+          <Button actionEvent={this.onPlus} innerHtml="+"/>
+          <Button actionEvent={this.onMinus} innerHtml="-"/>
         </header>
       </div>
     );
