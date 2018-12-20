@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import Button from './components/Button/Button';
+import Calculator from './components/Calculator/Calculator';
+
 import './App.css';
 
 class App extends Component {
@@ -7,26 +9,35 @@ class App extends Component {
       super(props);
 
       this.state = {
-        count: 0
+        total: 0,
+        sum: []
       }
-      this.onPlus = this.onPlus.bind(this);
     }
 
     onPlus = () => {
-      let newCount = this.state.count + 1;
-      this.setState({count: newCount});
+      let newCount = this.state.total + parseInt(this.state.sum.join(""));
+      this.setState({total: newCount, sum: []});
     }
 
     onMinus = () => {
-      let newCount = this.state.count - 1;
-      this.setState({count: newCount});
+      let newCount = this.state.total - parseInt(this.state.sum.join(""));
+      this.setState({total: newCount, sum: []});
+    }
+
+    printValue = (el) => {
+      this.setState({ sum: [...this.state.sum, el.target.value] })
     }
 
   render() {
     return (
       <div className="App">
         <header className="App-header">
-          <div className="counter">{this.state.count}
+          <div className="counter">{this.state.total}
+          </div>
+          <div className="sum">{this.state.sum || ""}
+          </div>
+          <div className="Calc--Numbers">
+            <Calculator printValue={this.printValue}/>
           </div>
           <Button actionEvent={this.onPlus} innerHtml="+"/>
           <Button actionEvent={this.onMinus} innerHtml="-"/>
